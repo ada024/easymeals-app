@@ -1,5 +1,4 @@
 import React from "react";
-import {ViewBase} from "react-native";
 import styled, {useTheme} from "styled-components/native";
 
 const sizeVariant = {
