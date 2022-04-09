@@ -9,6 +9,8 @@ import {useFonts as useOswald, Oswald_400Regular} from "@expo-google-fonts/oswal
 import {useFonts as useLato, Lato_400Regular} from "@expo-google-fonts/lato";
 import {SafeArea} from "./src/components/utility/safe-area.component";
 import {Ionicons} from '@expo/vector-icons';
+import {RestaurantsContextProvider} from "./src/services/restaurants/restaurants.context";
+
 
 
 const Tab = createBottomTabNavigator();
@@ -26,6 +28,8 @@ const screenOptions = ({route}) => {
         tabBarIcon: ({size, color}) => (
           <Ionicons name={iconName} size={size} color={color} />
         ),
+        tabBarActiveTintColor: 'green',
+        tabBarInactiveTintColor: 'gray',
     };
 };
 
@@ -51,19 +55,15 @@ export default function App() {
     return (
         <>
             <ThemeProvider theme={theme}>
+                <RestaurantsContextProvider>
                 <NavigationContainer>
-                    <Tab.Navigator
-                        screenOptions={screenOptions}
-                            tabBarOptions = {{
-                            activeTintColor: 'tomato',
-                            inactiveTintColor: 'gray',
-                        }}
-                    >
+                    <Tab.Navigator screenOptions={screenOptions}>
                         <Tab.Screen name="Restaurants" component={RestaurantsScreen}/>
                         <Tab.Screen name="Map" component={Map}/>
                         <Tab.Screen name="Settings" component={Settings}/>
                     </Tab.Navigator>
                 </NavigationContainer>
+                </RestaurantsContextProvider>
             </ThemeProvider>
             <ExpoStatusBar style='auto'/>
         </>
